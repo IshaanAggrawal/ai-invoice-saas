@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --color-background: #F8FAFC;
+  --color-foreground: #0F172A;
+  --color-primary: #EC4899;
+  --color-gray: #64748B;
+  --font-sans: 'Inter', sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Mesh gradient background */
+.bg-mesh {
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 20%),
+    radial-gradient(circle at 90% 80%, rgba(110, 220, 190, 0.1) 0%, transparent 20%);
+}
+
+/* Card styles */
+.card {
+  @apply bg-white rounded-2xl shadow-lg;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-[#EC4899] text-white rounded-full px-6 py-2 font-medium hover:opacity-90 transition-opacity;
+}
+
+.btn-secondary {
+  @apply border border-[#EC4899] text-[#EC4899] rounded-full px-6 py-2 font-medium hover:bg-[#EC4899] hover:text-white transition-colors;
+}
+
+/* Badge styles */
+.badge {
+  @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium;
+}
+
+.badge-pink {
+  @apply bg-[#FDF2F8] text-[#DB2777];
+}
+
+.badge-green {
+  @apply bg-[#F0FDF4] text-[#16A34A];
+}
+
+/* Status badges */
+.status-paid {
+  @apply bg-green-100 text-green-800 rounded-full px-3 py-1 text-sm font-medium;
+}
+
+.status-pending {
+  @apply bg-yellow-100 text-yellow-800 rounded-full px-3 py-1 text-sm font-medium;
 }
