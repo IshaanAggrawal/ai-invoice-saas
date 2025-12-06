@@ -2,23 +2,48 @@
 
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Card, Button } from "../../components";
 import { LogOut, Mail, User, Calendar, CreditCard } from "lucide-react";
 import { SignOutButton } from "@clerk/nextjs";
 
+// Define a type for our user state
+interface UserState {
+  isSignedIn: boolean | undefined;
+  user: any; // Using any to avoid complex Clerk types
+  isLoaded: boolean | undefined;
+}
+
 export default function ProfilePage() {
-  const { isSignedIn, user, isLoaded } = useUser();
+  const [clerkState, setClerkState] = useState<UserState>({
+    isSignedIn: false,
+    user: null,
+    isLoaded: false
+  });
   const router = useRouter();
 
   useEffect(() => {
-    if (isLoaded && !isSignedIn) {
+    try {
+      const clerkData = useUser();
+      setClerkState({
+        isSignedIn: clerkData.isSignedIn ?? false,
+        user: clerkData.user ?? null,
+        isLoaded: clerkData.isLoaded ?? false
+      });
+    } catch (error) {
+      console.warn("Clerk not properly configured:", error);
+      setClerkState({ isSignedIn: false, user: null, isLoaded: true });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (clerkState.isLoaded && !clerkState.isSignedIn) {
       router.push('/login');
     }
-  }, [isSignedIn, isLoaded, router]);
+  }, [clerkState.isSignedIn, clerkState.isLoaded, router]);
 
-  if (!isLoaded) {
+  if (!clerkState.isLoaded) {
     return (
       <div className="min-h-screen bg-mesh flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#EC4899]"></div>
@@ -26,9 +51,11 @@ export default function ProfilePage() {
     );
   }
 
-  if (!isSignedIn) {
+  if (!clerkState.isSignedIn) {
     return null;
   }
+
+  const { user } = clerkState;
 
   return (
     <div className="min-h-screen bg-mesh py-12">
@@ -56,7 +83,7 @@ export default function ProfilePage() {
                   {user?.fullName || "User"}
                 </h2>
                 <p className="text-[#64748B]">
-                  {user?.emailAddresses[0]?.emailAddress}
+                  {user?.emailAddresses?.[0]?.emailAddress}
                 </p>
               </div>
 
@@ -66,7 +93,7 @@ export default function ProfilePage() {
                   <div>
                     <p className="text-sm text-[#64748B]">Email</p>
                     <p className="text-[#0F172A]">
-                      {user?.emailAddresses[0]?.emailAddress}
+                      {user?.emailAddresses?.[0]?.emailAddress}
                     </p>
                   </div>
                 </div>
@@ -117,7 +144,7 @@ export default function ProfilePage() {
                   </label>
                   <input
                     type="email"
-                    value={user?.emailAddresses[0]?.emailAddress || ""}
+                    value={user?.emailAddresses?.[0]?.emailAddress || ""}
                     disabled
                     className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50"
                   />

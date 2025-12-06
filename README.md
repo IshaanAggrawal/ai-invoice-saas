@@ -17,6 +17,7 @@ BoltBill is a modern SaaS application that helps freelancers and small businesse
 
 - **Frontend**: Next.js 14+ (App Router), TypeScript, Tailwind CSS
 - **UI Components**: Lucide React Icons
+- **Authentication**: Clerk
 - **Styling**: Tailwind CSS with custom configurations
 - **Deployment**: Vercel
 
@@ -53,8 +54,11 @@ my-app/
 │   ├── builder/         # Invoice builder page
 │   ├── dashboard/       # User dashboard
 │   ├── login/           # Login page
+│   │   └── [[...sign-in]]/ # Clerk sign-in catch-all route
 │   ├── pricing/         # Pricing page
+│   ├── profile/         # User profile page
 │   ├── signup/          # Signup page
+│   │   └── [[...sign-up]]/ # Clerk sign-up catch-all route
 │   ├── support/         # Support page
 │   ├── templates/       # Invoice templates
 │   ├── layout.tsx       # Root layout
@@ -68,6 +72,7 @@ my-app/
 ├── public/              # Static assets
 └── styles/              # Global styles
 ```
+
 ## Key Components
 
 ### Invoice Builder
@@ -83,6 +88,12 @@ Choose from dozens of professionally designed templates that match your brand pe
 ### AI Automations
 Automate repetitive tasks with our AI-powered features.
 
+### Authentication
+Secure authentication powered by Clerk:
+- Sign up and login pages with hash-based routing
+- Protected routes for authenticated users only
+- User profile management
+
 ### Reusable Components
 We've created several reusable components to maintain consistency across the application:
 
@@ -91,10 +102,32 @@ We've created several reusable components to maintain consistency across the app
 3. **Button** - Primary and secondary button variants with hover effects
 4. **Badge** - Status indicators with color variations
 
-## Deployment
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new) from the creators of Next.js.
+## Environment Variables
 
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Create a `.env.local` file with the following variables:
+
+```
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+```
+
+## Deployment
+
+### Vercel (Recommended)
+
+1. Push your code to a GitHub repository
+2. Connect your repository to Vercel
+3. Add the required environment variables in the Vercel dashboard:
+   - `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
+   - `CLERK_SECRET_KEY`
+4. Deploy!
+
+### Manual Deployment
+
+```bash
+npm run build
+npm start
+```
 
 ## Learn More
 
@@ -103,6 +136,7 @@ To learn more about the technologies used in this project:
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs) - learn about Tailwind CSS utilities
 - [TypeScript Documentation](https://www.typescriptlang.org/docs/) - learn about TypeScript
+- [Clerk Documentation](https://clerk.com/docs) - learn about Clerk authentication
 
 ## Contributing
 

@@ -5,7 +5,18 @@ import { Circle, LayoutDashboard, FileText, Zap, Palette, LogOut } from "lucide-
 import { useUser, SignOutButton } from "@clerk/nextjs";
 
 export default function Navbar() {
-  const { isSignedIn, user } = useUser();
+  // Handle cases where Clerk isn't properly configured
+  let isSignedIn = false;
+  let user = null;
+  
+  try {
+    const clerkUser = useUser();
+    isSignedIn = clerkUser.isSignedIn || false;
+    user = clerkUser.user || null;
+  } catch (error) {
+    // Clerk not properly configured, continue with defaults
+    console.warn("Clerk not properly configured:", error);
+  }
 
   return (
     <nav className="flex items-center justify-between p-6 max-w-7xl mx-auto">
@@ -47,7 +58,7 @@ export default function Navbar() {
       </div>
       
       <div className="flex items-center space-x-4">
-        {isSignedIn ? (
+        {isSignedIn && user ? (
           <div className="flex items-center space-x-4">
             <Link href="/profile" className="flex items-center gap-2">
               {user?.imageUrl && (
@@ -58,7 +69,7 @@ export default function Navbar() {
                 />
               )}
               <span className="text-sm text-[#64748B] hidden md:inline">
-                {user?.fullName || user?.emailAddresses[0]?.emailAddress}
+                {user?.fullName || user?.emailAddresses?.[0]?.emailAddress}
               </span>
             </Link>
             <SignOutButton>
