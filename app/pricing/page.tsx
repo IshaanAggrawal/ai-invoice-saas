@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Card, Button } from "../../components";
 
 export default function Pricing() {
   const [isYearly, setIsYearly] = useState(false);
@@ -83,7 +84,7 @@ export default function Pricing() {
           {plans.map((plan, index) => (
             <div 
               key={index} 
-              className={`card overflow-hidden relative ${
+              className={`relative ${
                 plan.featured 
                   ? 'ring-2 ring-[#EC4899]' 
                   : ''
@@ -97,64 +98,69 @@ export default function Pricing() {
                 </div>
               )}
               
-              <div className={`p-8 pt-12 ${plan.featured ? (isYearly ? 'bg-[#EC4899]' : 'bg-white') : ''}`}>
-                <h2 className={`text-2xl font-bold mb-2 ${plan.featured && !isYearly ? 'text-[#EC4899]' : plan.featured && isYearly ? 'text-white' : 'text-[#0F172A]'}`}>
-                  {plan.name}
-                </h2>
-                <p className={`mb-6 ${plan.featured && !isYearly ? 'text-[#64748B]' : plan.featured && isYearly ? 'text-[#FDF2F8]' : 'text-[#64748B]'}`}>
-                  {plan.description}
-                </p>
-                
-                <div className="mb-8">
-                  <span className={`text-4xl font-bold ${plan.featured && !isYearly ? 'text-[#0F172A]' : plan.featured && isYearly ? 'text-white' : 'text-[#0F172A]'}`}>
-                    {plan.price}
-                  </span>
-                  <span className={`text-lg ${plan.featured && !isYearly ? 'text-[#64748B]' : plan.featured && isYearly ? 'text-[#FDF2F8]' : 'text-[#64748B]'}`}>
-                    {plan.period}
-                  </span>
+              {/* Using the new Card component */}
+              <Card className={`overflow-hidden relative ${plan.featured ? (isYearly ? 'bg-[#EC4899]' : 'bg-white') : ''}`}>
+                <div className={`p-8 pt-12 ${plan.featured ? (isYearly ? 'bg-[#EC4899]' : 'bg-white') : ''}`}>
+                  <h2 className={`text-2xl font-bold mb-2 ${plan.featured && !isYearly ? 'text-[#EC4899]' : plan.featured && isYearly ? 'text-white' : 'text-[#0F172A]'}`}>
+                    {plan.name}
+                  </h2>
+                  <p className={`mb-6 ${plan.featured && !isYearly ? 'text-[#64748B]' : plan.featured && isYearly ? 'text-[#FDF2F8]' : 'text-[#64748B]'}`}>
+                    {plan.description}
+                  </p>
+                  
+                  <div className="mb-8">
+                    <span className={`text-4xl font-bold ${plan.featured && !isYearly ? 'text-[#0F172A]' : plan.featured && isYearly ? 'text-white' : 'text-[#0F172A]'}`}>
+                      {plan.price}
+                    </span>
+                    <span className={`text-lg ${plan.featured && !isYearly ? 'text-[#64748B]' : plan.featured && isYearly ? 'text-[#FDF2F8]' : 'text-[#64748B]'}`}>
+                      {plan.period}
+                    </span>
+                  </div>
+                  
+                  {/* Using the new Button component */}
+                  <Button 
+                    variant={plan.featured ? "secondary" : "primary"}
+                    className={`w-full py-3 rounded-full font-medium transition-colors ${
+                      plan.featured && !isYearly
+                        ? 'bg-white text-[#EC4899] border border-[#EC4899] hover:bg-[#EC4899] hover:text-white'
+                        : plan.featured && isYearly
+                          ? 'bg-white text-[#EC4899] hover:bg-gray-100'
+                          : ''
+                    }`}
+                  >
+                    {plan.buttonText}
+                  </Button>
                 </div>
                 
-                <button 
-                  className={`w-full py-3 rounded-full font-medium transition-colors ${
-                    plan.featured && !isYearly
-                      ? 'bg-white text-[#EC4899] border border-[#EC4899] hover:bg-[#EC4899] hover:text-white'
-                      : plan.featured && isYearly
-                        ? 'bg-white text-[#EC4899] hover:bg-gray-100'
-                        : 'btn-primary'
-                  }`}
-                >
-                  {plan.buttonText}
-                </button>
-              </div>
-              
-              <div className="p-8">
-                <ul className="space-y-4">
-                  {plan.features.map((feature, featIndex) => (
-                    <li 
-                      key={featIndex} 
-                      className="flex items-start"
-                    >
-                      <svg 
-                        className={`w-5 h-5 mr-3 mt-0.5 ${plan.featured && !isYearly ? 'text-[#EC4899]' : plan.featured && isYearly ? 'text-white' : 'text-[#10B981]'}`}
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24" 
-                        xmlns="http://www.w3.org/2000/svg"
+                <div className="p-8">
+                  <ul className="space-y-4">
+                    {plan.features.map((feature, featIndex) => (
+                      <li 
+                        key={featIndex} 
+                        className="flex items-start"
                       >
-                        <path 
-                          strokeLinecap="round" 
-                          strokeLinejoin="round" 
-                          strokeWidth="2" 
-                          d="M5 13l4 4L19 7"
-                        ></path>
-                      </svg>
-                      <span className={plan.featured && !isYearly ? 'text-[#64748B]' : plan.featured && isYearly ? 'text-[#FDF2F8]' : 'text-[#64748B]'}>
-                        {feature}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                        <svg 
+                          className={`w-5 h-5 mr-3 mt-0.5 ${plan.featured && !isYearly ? 'text-[#EC4899]' : plan.featured && isYearly ? 'text-white' : 'text-[#10B981]'}`}
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24" 
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round" 
+                            strokeWidth="2" 
+                            d="M5 13l4 4L19 7"
+                          ></path>
+                        </svg>
+                        <span className={plan.featured && !isYearly ? 'text-[#64748B]' : plan.featured && isYearly ? 'text-[#FDF2F8]' : 'text-[#64748B]'}>
+                          {feature}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Card>
             </div>
           ))}
         </div>

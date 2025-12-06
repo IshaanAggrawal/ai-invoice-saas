@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Sparkles } from "lucide-react";
+import { Card, Button, Badge } from "../../components";
 
 export default function InvoiceBuilder() {
   const [businessInfo, setBusinessInfo] = useState({
@@ -69,7 +70,8 @@ export default function InvoiceBuilder() {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Editor Panel */}
           <div className="flex-1">
-            <div className="card p-6 mb-6">
+            {/* Using the new Card component */}
+            <Card className="p-6 mb-6">
               <h2 className="text-xl font-bold text-[#0F172A] mb-4">Your Business</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -113,9 +115,10 @@ export default function InvoiceBuilder() {
                   />
                 </div>
               </div>
-            </div>
+            </Card>
 
-            <div className="card p-6 mb-6">
+            {/* Using the new Card component */}
+            <Card className="p-6 mb-6">
               <h2 className="text-xl font-bold text-[#0F172A] mb-4">Client Details</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -159,17 +162,19 @@ export default function InvoiceBuilder() {
                   />
                 </div>
               </div>
-            </div>
+            </Card>
 
-            <div className="card p-6 mb-6">
+            {/* Using the new Card component */}
+            <Card className="p-6 mb-6">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-bold text-[#0F172A]">Line Items</h2>
-                <button 
+                {/* Using the new Button component */}
+                <Button 
+                  variant="secondary"
                   onClick={addLineItem}
-                  className="btn-secondary text-sm"
                 >
                   Add Item
-                </button>
+                </Button>
               </div>
               
               <div className="space-y-4">
@@ -218,7 +223,7 @@ export default function InvoiceBuilder() {
               <button className="mt-4 flex items-center gap-2 text-[#EC4899] font-medium hover:opacity-90">
                 <Sparkles className="w-4 h-4" /> Suggest with AI
               </button>
-            </div>
+            </Card>
           </div>
 
           {/* Preview Panel */}
@@ -226,10 +231,12 @@ export default function InvoiceBuilder() {
             <div className="sticky top-6">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-bold text-[#0F172A]">Live Preview</h2>
-                <span className="badge badge-pink">Draft</span>
+                {/* Using the new Badge component */}
+                <Badge variant="pink">Draft</Badge>
               </div>
               
-              <div className="card p-8 bg-white">
+              {/* Using the new Card component */}
+              <Card className="p-8 bg-white">
                 {/* Invoice Header */}
                 <div className="flex justify-between items-start mb-12">
                   <div>
@@ -307,7 +314,7 @@ export default function InvoiceBuilder() {
                   <p className="text-sm text-[#64748B]">Notes</p>
                   <p className="text-sm">Thank you for your business!</p>
                 </div>
-              </div>
+              </Card>
             </div>
           </div>
         </div>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight, Play, Zap, FileText, Clock, Sparkles, CheckCircle, Users, TrendingUp, Circle, Twitter, Linkedin, Facebook, Star } from "lucide-react";
+import { Card, Badge } from "../components";
 
 export default function Home() {
   const features = [
@@ -65,9 +66,8 @@ export default function Home() {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           {/* Left Content */}
           <div className="flex-1">
-            <div className="inline-block bg-[#FDF2F8] text-[#DB2777] px-4 py-1 rounded-full text-sm font-medium mb-6">
-              AI INVOICE MAKER
-            </div>
+            {/* Using the new Badge component */}
+            <Badge variant="pink">AI INVOICE MAKER</Badge>
             <h1 className="text-4xl md:text-5xl font-bold text-[#0F172A] leading-tight mb-6">
               Create smart invoices in seconds, not hours.
             </h1>
@@ -90,13 +90,15 @@ export default function Home() {
           {/* Right Visual */}
           <div className="flex-1 flex justify-center">
             <div className="relative">
-              <div className="card w-80 h-96 p-6 transform rotate-3 shadow-xl">
+              {/* Using the new Card component */}
+              <Card className="w-80 h-96 p-6 transform rotate-3 shadow-xl">
                 <div className="flex justify-between items-start mb-6">
                   <div>
                     <h3 className="font-bold text-lg">Studio Invoice</h3>
                     <p className="text-sm text-gray-500">#INV-028</p>
                   </div>
-                  <span className="badge badge-pink">AI Draft</span>
+                  {/* Using the new Badge component */}
+                  <Badge variant="pink">AI Draft</Badge>
                 </div>
                 
                 <div className="space-y-4 mb-6">
@@ -126,7 +128,7 @@ export default function Home() {
                   <span>Total</span>
                   <span>$4,230.00</span>
                 </div>
-              </div>
+              </Card>
               
               {/* Floating elements for visual effect */}
               <div className="absolute -top-4 -left-4 w-24 h-24 rounded-full bg-[#FDF2F8] opacity-50"></div>
@@ -148,13 +150,14 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <div key={index} className="text-center p-6">
+              // Using the new Card component
+              <Card key={index} className="text-center p-6">
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#FDF2F8] text-[#EC4899] mb-6">
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-bold text-[#0F172A] mb-3">{feature.title}</h3>
                 <p className="text-[#64748B]">{feature.description}</p>
-              </div>
+              </Card>
             ))}
           </div>
         </div>
@@ -172,13 +175,14 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {howItWorks.map((step, index) => (
-              <div key={index} className="card p-8 text-center">
+              // Using the new Card component
+              <Card key={index} className="p-8 text-center">
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#EC4899] text-white font-bold mb-6">
                   {step.step}
                 </div>
                 <h3 className="text-xl font-bold text-[#0F172A] mb-3">{step.title}</h3>
                 <p className="text-[#64748B]">{step.description}</p>
-              </div>
+              </Card>
             ))}
           </div>
         </div>
@@ -196,7 +200,8 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="card p-8">
+              // Using the new Card component
+              <Card key={index} className="p-8">
                 <div className="flex items-center mb-4">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
@@ -207,7 +212,7 @@ export default function Home() {
                   <p className="font-bold text-[#0F172A]">{testimonial.name}</p>
                   <p className="text-sm text-[#64748B]">{testimonial.role}</p>
                 </div>
-              </div>
+              </Card>
             ))}
           </div>
         </div>

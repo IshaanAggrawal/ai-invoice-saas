@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Plus } from "lucide-react";
+import { Card, Button } from "../../components";
 
 export default function Dashboard() {
   // Dummy data
@@ -27,15 +28,16 @@ export default function Dashboard() {
             <h1 className="text-3xl font-bold text-[#0F172A]">Dashboard</h1>
             <p className="text-[#64748B]">Stay on top of invoices, clients, and revenue.</p>
           </div>
-          <Link href="/builder" className="btn-primary mt-4 md:mt-0 flex items-center gap-2">
+          <Button variant="primary" className="mt-4 md:mt-0 flex items-center gap-2">
             <Plus className="w-4 h-4" /> New invoice
-          </Link>
+          </Button>
         </div>
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {stats.map((stat, index) => (
-            <div key={index} className="card p-6">
+            // Using the new Card component
+            <Card key={index} className="p-6">
               <h3 className="text-[#64748B] text-sm font-medium mb-2">{stat.title}</h3>
               <p className="text-3xl font-bold text-[#0F172A] mb-2">{stat.value}</p>
               {stat.change && (
@@ -46,12 +48,13 @@ export default function Dashboard() {
               {stat.subtitle && (
                 <p className="text-sm text-[#64748B]">{stat.subtitle}</p>
               )}
-            </div>
+            </Card>
           ))}
         </div>
 
         {/* Recent Invoices */}
-        <div className="card p-6">
+        {/* Using the new Card component */}
+        <Card className="p-6">
           <h2 className="text-xl font-bold text-[#0F172A] mb-6">Recent Invoices</h2>
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -79,7 +82,7 @@ export default function Dashboard() {
               </tbody>
             </table>
           </div>
-        </div>
+        </Card>
       </div>
     </div>
   );

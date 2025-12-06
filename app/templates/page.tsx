@@ -1,3 +1,7 @@
+"use client";
+
+import { Card, Badge, Button } from "../../components";
+
 export default function Templates() {
   const templates = [
     {
@@ -29,7 +33,8 @@ export default function Templates() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {templates.map((template, index) => (
-            <div key={index} className="card overflow-hidden">
+            // Using the new Card component
+            <Card key={index} className="overflow-hidden">
               <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center">
                 <span className="text-gray-500">Template Preview</span>
               </div>
@@ -37,13 +42,17 @@ export default function Templates() {
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="text-xl font-bold text-[#0F172A]">{template.name}</h3>
                   {template.badge && (
-                    <span className="badge badge-pink">{template.badge}</span>
+                    // Using the new Badge component
+                    <Badge variant="pink">{template.badge}</Badge>
                   )}
                 </div>
                 <p className="text-[#64748B] mb-4">{template.description}</p>
-                <button className="btn-secondary w-full">Select Template</button>
+                {/* Using the new Button component */}
+                <Button variant="secondary" className="w-full">
+                  Select Template
+                </Button>
               </div>
-            </div>
+            </Card>
           ))}
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Card, Button } from "../../components";
 
 export default function Support() {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
@@ -48,7 +49,8 @@ export default function Support() {
             <h2 className="text-2xl font-bold text-[#0F172A] mb-6">Frequently Asked Questions</h2>
             <div className="space-y-4">
               {faqs.map((faq, index) => (
-                <div key={index} className="card">
+                // Using the new Card component
+                <Card key={index}>
                   <button
                     className="w-full flex justify-between items-center p-6 text-left"
                     onClick={() => toggleFAQ(index)}
@@ -76,7 +78,7 @@ export default function Support() {
                       {faq.answer}
                     </div>
                   )}
-                </div>
+                </Card>
               ))}
             </div>
           </div>
@@ -84,7 +86,8 @@ export default function Support() {
           {/* Contact Form */}
           <div>
             <h2 className="text-2xl font-bold text-[#0F172A] mb-6">Contact Support</h2>
-            <div className="card p-6">
+            {/* Using the new Card component */}
+            <Card className="p-6">
               <form className="space-y-6">
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-[#64748B] mb-1">
@@ -126,11 +129,12 @@ export default function Support() {
                   ></textarea>
                 </div>
                 
-                <button type="submit" className="btn-primary w-full">
+                {/* Using the new Button component */}
+                <Button type="submit" variant="primary" className="w-full">
                   Send Message
-                </button>
+                </Button>
               </form>
-            </div>
+            </Card>
           </div>
         </div>
       </div>

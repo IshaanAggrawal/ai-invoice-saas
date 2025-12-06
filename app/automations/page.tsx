@@ -1,3 +1,7 @@
+"use client";
+
+import { Card, Badge } from "../../components";
+
 export default function Automations() {
   const features = [
     {
@@ -29,18 +33,22 @@ export default function Automations() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <div key={index} className="card p-8 text-center">
+            // Using the new Card component
+            <Card key={index} className="p-8 text-center">
               <div className="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16 mx-auto mb-6 flex items-center justify-center">
                 <span className="text-gray-500 text-2xl">⚡</span>
               </div>
               <div className="flex justify-center mb-3">
                 <h3 className="text-xl font-bold text-[#0F172A]">{feature.name}</h3>
                 {feature.badge && (
-                  <span className="badge ml-3 bg-[#EFF6FF] text-[#3B82F6]">{feature.badge}</span>
+                  // Using the new Badge component
+                  <Badge variant="pink" className="ml-3 bg-[#EFF6FF] text-[#3B82F6]">
+                    {feature.badge}
+                  </Badge>
                 )}
               </div>
               <p className="text-[#64748B]">{feature.description}</p>
-            </div>
+            </Card>
           ))}
         </div>
       </div>
