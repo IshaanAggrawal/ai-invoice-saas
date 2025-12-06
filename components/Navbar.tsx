@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Circle, LayoutDashboard, FileText, Zap, Palette, LogOut } from "lucide-react";
-import { useUser, SignOutButton } from "@clerk/nextjs";
+import { useUser, SignOutButton, UserButton } from "@clerk/nextjs";
 
 export default function Navbar() {
   // Handle cases where Clerk isn't properly configured
@@ -60,18 +60,16 @@ export default function Navbar() {
       <div className="flex items-center space-x-4">
         {isSignedIn && user ? (
           <div className="flex items-center space-x-4">
-            <Link href="/profile" className="flex items-center gap-2">
-              {user?.imageUrl && (
-                <img 
-                  src={user.imageUrl} 
-                  alt={user.fullName || "User"} 
-                  className="w-8 h-8 rounded-full object-cover"
-                />
-              )}
-              <span className="text-sm text-[#64748B] hidden md:inline">
-                {user?.fullName || user?.emailAddresses?.[0]?.emailAddress}
-              </span>
-            </Link>
+            {/* Use Clerk's UserButton component for profile access */}
+            <UserButton 
+              userProfileMode="navigation"
+              userProfileUrl="/profile"
+              appearance={{
+                elements: {
+                  userButtonAvatarBox: "w-8 h-8 rounded-full object-cover"
+                }
+              }}
+            />
             <SignOutButton>
               <button className="text-[#64748B] hover:text-[#0F172A] flex items-center gap-1">
                 <LogOut className="w-4 h-4" />

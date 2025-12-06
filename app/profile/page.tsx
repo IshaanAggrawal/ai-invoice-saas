@@ -8,42 +8,17 @@ import { Card, Button } from "../../components";
 import { LogOut, Mail, User, Calendar, CreditCard } from "lucide-react";
 import { SignOutButton } from "@clerk/nextjs";
 
-// Define a type for our user state
-interface UserState {
-  isSignedIn: boolean | undefined;
-  user: any; // Using any to avoid complex Clerk types
-  isLoaded: boolean | undefined;
-}
-
 export default function ProfilePage() {
-  const [clerkState, setClerkState] = useState<UserState>({
-    isSignedIn: false,
-    user: null,
-    isLoaded: false
-  });
+  const { isSignedIn, user, isLoaded } = useUser();
   const router = useRouter();
 
   useEffect(() => {
-    try {
-      const clerkData = useUser();
-      setClerkState({
-        isSignedIn: clerkData.isSignedIn ?? false,
-        user: clerkData.user ?? null,
-        isLoaded: clerkData.isLoaded ?? false
-      });
-    } catch (error) {
-      console.warn("Clerk not properly configured:", error);
-      setClerkState({ isSignedIn: false, user: null, isLoaded: true });
-    }
-  }, []);
-
-  useEffect(() => {
-    if (clerkState.isLoaded && !clerkState.isSignedIn) {
+    if (isLoaded && !isSignedIn) {
       router.push('/login');
     }
-  }, [clerkState.isSignedIn, clerkState.isLoaded, router]);
+  }, [isSignedIn, isLoaded, router]);
 
-  if (!clerkState.isLoaded) {
+  if (!isLoaded) {
     return (
       <div className="min-h-screen bg-mesh flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#EC4899]"></div>
@@ -51,11 +26,9 @@ export default function ProfilePage() {
     );
   }
 
-  if (!clerkState.isSignedIn) {
+  if (!isSignedIn) {
     return null;
   }
-
-  const { user } = clerkState;
 
   return (
     <div className="min-h-screen bg-mesh py-12">

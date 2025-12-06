@@ -68,10 +68,10 @@ export default function Home() {
           <div className="flex-1">
             {/* Using the new Badge component */}
             <Badge variant="pink">AI INVOICE MAKER</Badge>
-            <h1 className="text-4xl md:text-5xl font-bold text-[#0F172A] leading-tight mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground leading-tight mb-6">
               Create smart invoices in seconds, not hours.
             </h1>
-            <p className="text-lg text-[#64748B] mb-8 max-w-2xl">
+            <p className="text-lg text-gray mb-8 max-w-2xl">
               BoltBill turns messy notes into tax-ready invoices with AI. Draft, preview, and send professional invoices in seconds with our intuitive builder.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -82,7 +82,7 @@ export default function Home() {
                 <Play className="w-4 h-4" /> Watch 60s demo
               </button>
             </div>
-            <p className="text-[#64748B] text-sm">
+            <p className="text-gray text-sm">
               Trusted by freelancers & studios worldwide
             </p>
           </div>
@@ -132,7 +132,7 @@ export default function Home() {
               
               {/* Floating elements for visual effect */}
               <div className="absolute -top-4 -left-4 w-24 h-24 rounded-full bg-[#FDF2F8] opacity-50"></div>
-              <div className="absolute -bottom-4 -right-4 w-16 h-16 rounded-full bg-[#EC4899] opacity-20"></div>
+              <div className="absolute -bottom-4 -right-4 w-16 h-16 rounded-full bg-primary opacity-20"></div>
             </div>
           </div>
         </div>
@@ -142,8 +142,8 @@ export default function Home() {
       <div className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0F172A] mb-4">Everything you need to bill smarter</h2>
-            <p className="text-lg text-[#64748B] max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Everything you need to bill smarter</h2>
+            <p className="text-lg text-gray max-w-2xl mx-auto">
               Powerful features designed to save you time and impress your clients.
             </p>
           </div>
@@ -152,11 +152,11 @@ export default function Home() {
             {features.map((feature, index) => (
               // Using the new Card component
               <Card key={index} className="text-center p-6">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#FDF2F8] text-[#EC4899] mb-6">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#FDF2F8] text-primary mb-6">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-bold text-[#0F172A] mb-3">{feature.title}</h3>
-                <p className="text-[#64748B]">{feature.description}</p>
+                <h3 className="text-xl font-bold text-foreground mb-3">{feature.title}</h3>
+                <p className="text-gray">{feature.description}</p>
               </Card>
             ))}
           </div>
@@ -164,11 +164,11 @@ export default function Home() {
       </div>
 
       {/* How It Works Section */}
-      <div className="py-20 bg-[#F8FAFC]">
+      <div className="py-20 bg-background">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0F172A] mb-4">Get paid faster in 3 simple steps</h2>
-            <p className="text-lg text-[#64748B] max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Get paid faster in 3 simple steps</h2>
+            <p className="text-lg text-gray max-w-2xl mx-auto">
               Our streamlined process makes invoicing effortless and professional.
             </p>
           </div>
@@ -177,11 +177,11 @@ export default function Home() {
             {howItWorks.map((step, index) => (
               // Using the new Card component
               <Card key={index} className="p-8 text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#EC4899] text-white font-bold mb-6">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary text-white font-bold mb-6">
                   {step.step}
                 </div>
-                <h3 className="text-xl font-bold text-[#0F172A] mb-3">{step.title}</h3>
-                <p className="text-[#64748B]">{step.description}</p>
+                <h3 className="text-xl font-bold text-foreground mb-3">{step.title}</h3>
+                <p className="text-gray">{step.description}</p>
               </Card>
             ))}
           </div>
@@ -192,8 +192,8 @@ export default function Home() {
       <div className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0F172A] mb-4">Loved by freelancers and businesses</h2>
-            <p className="text-lg text-[#64748B] max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Loved by freelancers and businesses</h2>
+            <p className="text-lg text-gray max-w-2xl mx-auto">
               Join thousands of satisfied users who save hours each week.
             </p>
           </div>
@@ -207,10 +207,10 @@ export default function Home() {
                     <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                   ))}
                 </div>
-                <p className="text-[#64748B] mb-6 italic">"{testimonial.content}"</p>
+                <p className="text-gray mb-6 italic">"{testimonial.content}"</p>
                 <div>
-                  <p className="font-bold text-[#0F172A]">{testimonial.name}</p>
-                  <p className="text-sm text-[#64748B]">{testimonial.role}</p>
+                  <p className="font-bold text-foreground">{testimonial.name}</p>
+                  <p className="text-sm text-gray">{testimonial.role}</p>
                 </div>
               </Card>
             ))}
@@ -222,25 +222,25 @@ export default function Home() {
       <div className="py-20 bg-[#FDF2F8]">
         <div className="container mx-auto px-6 text-center">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0F172A] mb-4">Ready to save hours on invoicing?</h2>
-            <p className="text-lg text-[#64748B] mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Ready to save hours on invoicing?</h2>
+            <p className="text-lg text-gray mb-8">
               Join thousands of professionals who trust BoltBill for their billing needs.
             </p>
             <Link href="/signup" className="btn-primary inline-flex items-center gap-2">
               Get started free <ArrowRight className="w-4 h-4" />
             </Link>
-            <p className="text-sm text-[#64748B] mt-4">No credit card required · Free forever plan</p>
+            <p className="text-sm text-gray mt-4">No credit card required · Free forever plan</p>
           </div>
         </div>
       </div>
 
       {/* Footer */}
-      <footer className="bg-[#0F172A] text-white pt-16 pb-8">
+      <footer className="bg-foreground text-white pt-16 pb-8">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
             <div className="lg:col-span-2">
               <div className="flex items-center space-x-2 mb-6">
-                <div className="w-8 h-8 rounded-full bg-[#EC4899] flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
                   <Circle className="w-4 h-4 text-white fill-white" />
                 </div>
                 <span className="text-xl font-bold">BoltBill</span>
