@@ -14,7 +14,7 @@
     "@types/mongoose": "^5.11.97",
     "lucide-react": "^0.555.0",
     "mongoose": "^9.0.1",
-    "next": "16.0.7",
+    "next": "16.0.10",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "resend": "^6.5.2",
